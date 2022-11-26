@@ -1,0 +1,41 @@
+{% extends 'women/base.html' %}
+
+{% block info %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Nav -->
+<header id="header">
+	<a class="logo">my design is not very good</a>
+</header>
+<!-- Nav -->
+<nav id="nav">
+	<ul class="links">
+		<li class="active"><a href="index.html">Blog</a></li>
+		<li><a href="generic.html">My history</a></li>
+		<li><a href="elements.html">Comment</a></li>
+	</ul>
+	<ul class="icons">
+		<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+		<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+		<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+	</ul>
+</nav>
+<!-- Main -->
+<div id="main">
+	<!-- Featured Post -->
+	<article class="post featured">
+		<header class="major">
+			<span class="date">{{ post.time_create }}</span>
+			<h2><a href="#">{{ post.title }}</a></h2>
+			<p>{{ post.content | truncatechars:200}}</p>
+		</header>
+		{% if post.photo %}
+		<a class="image main"><img src="{{ item.photo.url }}" alt="" /></a>
+		{% else %}
+		<a class="image main"><img src="https://api.lorem.space/image/game?w=150&h=220" alt="" /></a>
+		{% endif %}
+	</article>
+</div>
+{% endblock %}

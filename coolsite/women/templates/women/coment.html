@@ -1,0 +1,73 @@
+{% extends 'women/base.html' %}
+
+{% block info %}
+
+<div id="intro">
+	<h1>there you can leave<br/>a comment on this site</h1>
+	<p>I would love any text</p>
+	<ul class="actions">
+		<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+	</ul>
+</div>
+
+<nav id="nav">
+	<ul class="links">
+		<li class="active"><a href="{% url 'home' %}">Blog</a></li>
+		<li><a href="#">My history</a></li>
+		<li><a href="{% url 'coment' %}">Comment</a></li>
+	</ul>
+	<ul class="icons">
+		<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+		<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+		<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+	</ul>
+</nav>
+
+{% endblock %}
+
+{% block content %}
+{% for item in coment %}
+<div id="main">
+	<div class="my_class">
+		<article class="post featured">
+			<header class="major">
+				<span class="date">{{ item.name }}</span>
+				<h2><a href="#">{{ item.text }}</a></h2>
+				<p>{{ item.email }}</p>
+			</header>
+		</article>
+	</div>
+</div>
+	{% endfor %}
+
+<footer id="footer">
+	<section>
+		<form method="post" action="{% url 'coment' %}">
+			{% csrf_token %}
+			<div class="fields">
+				{% for item in form %}
+				<div class="field">
+					<p><label for="{{ item.id_for_label }}">{{item.label}}</label>{{item}}</p>
+				</div>
+				{% endfor %}
+		</div>
+			<ul class="actions">
+				<
+				<li><input type="submit" href="{% url 'coment' %}" value="Send Message" /></li>
+			</ul>
+		</form>
+	</section>
+	<section class="split contact">
+		<section>
+			<h3>social networks</h3>
+			<ul class="icons alt">
+				<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+			</ul>
+		</section>
+	</section>
+</footer>
+
+
+{% endblock %}

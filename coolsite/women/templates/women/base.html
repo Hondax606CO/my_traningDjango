@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+{% load static %}
+
+<html>
+	<head>
+		<title>Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'women/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'women/assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
+		<!-- Intro -->
+		{% block header %}
+		<div id="intro">
+			<h1>this site <br/>is made in training Massively</h1>
+			<p>My name is anatoliy vaganov i want to become a backend developer<br/>
+				The whole story is fictional, constructions are random
+			</p>
+			<ul class="actions">
+				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+			</ul>
+		</div>
+		<header id="header">
+			<a href="index.html" class="logo">Qbix.pro</a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li class="active"><a href="{% url 'home' %}">Blog</a></li>
+				<li><a href="{% url 'about' %}">My history</a></li>
+				<li><a href="{% url 'coment' %}">Comment</a></li>
+			</ul>
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+			</ul>
+		</nav>
+		{% endblock %}
+
+
+		{% block content %}
+		<div id="main">
+
+			<!-- Featured Post -->
+			{% for item in last_post %}
+			<article class="post featured">
+				<header class="major">
+					<span class="date">{{ item.time_create }}</span>
+					<h2><a href="#">{{ item.title }}</a></h2>
+					<p>{{ item.content | truncatechars:200}}</p>
+				</header>
+				{% if item.photo %}
+				<a href="#" class="image main"><img src="{{ item.photo.url }}" alt="" /></a>
+				{% else %}
+				<a href="#" class="image main"><img src="https://api.lorem.space/image/game?w=150&h=220" alt="" /></a>
+				{% endif %}
+				<ul class="actions special">
+					<li><a href="{{ item.get_absolute_url }}" class="button large">Full Story</a></li>
+				</ul>
+			</article>
+			{% endfor %}
+
+			<!-- Posts -->
+			<section class="posts">
+
+								{% for item in page_obj %}
+								<article>
+									<header>
+										<span class="date">{{ item.time_create }}</span>
+										<h2><a href="#">{{ item.title }}</a></h2>
+									</header>
+
+									{% if item.photo %}
+									<a href="#" class="image fit"><img src="{{ item.photo.url }}" alt="" /></a>
+									{% else %}
+									<a href="#" class="image fit"><img src="https://api.lorem.space/image/album?w=150&h=150" alt="" /></a>
+									{% endif %}
+
+									<p>{{ item.content | truncatechars:150 }}</p>
+									<ul class="actions special">
+										<li><a href="{{ item.get_absolute_url }}" class="button">Full Story</a></li>
+									</ul>
+								</article>
+								{% endfor %}
+							</section>
+
+			<!-- Footer -->
+			<footer>
+							<div class="pagination">
+								<!--<a href="#" class="previous">Prev</a>-->
+								{% for item in page_obj.paginator.page_range %}
+								<a href="?page={{ item }}" class="page">{{ item }}</a>
+								{% endfor %}
+								</div>
+						</footer>
+		</div>
+		<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+		{% endblock %}
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="{% static 'women/assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'women/assets/js/jquery.scrollex.min.js' %}"></script>
+	<script src="{% static 'women/assets/js/jquery.scrolly.min.js' %}"></script>
+	<script src="{% static 'women/assets/js/browser.min.js' %}"></script>
+	<script src="{% static 'women/assets/js/breakpoints.min.js' %}"></script>
+	<script src="{% static 'women/assets/js/util.js' %}"></script>
+	<script src="{% static 'women/assets/js/main.js' %}"></script>
+
+	</body>
+</html>
+
+
